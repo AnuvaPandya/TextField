@@ -11,12 +11,14 @@ const DisplayData = () => {
   }, []);
 
   return (
-    <>
+    <div>
       <div>
         {data.map((element) => {
-          <div>
-            {element.id} ) {element.title.toUpperCase()}
-          </div>;
+          return (
+            <div>
+              {element.id} ) {element.title.toUpperCase()}
+            </div>
+          );
         })}
         {/* <TextField
           id="outlined-basic"
@@ -24,7 +26,7 @@ const DisplayData = () => {
           variant="outlined"
         /> */}
       </div>
-    </>
+    </div>
   );
 };
 export default DisplayData;
