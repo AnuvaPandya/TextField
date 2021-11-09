@@ -1,5 +1,5 @@
-// import { TextField } from "@mui/material";
 import React, { useState, useEffect } from "react";
+import { TextField } from "@mui/material";
 
 const DisplayData = () => {
   const [data, setData] = useState([]);
@@ -20,12 +20,8 @@ const DisplayData = () => {
             </div>
           );
         })}
-        {/* <TextField
-          id="outlined-basic"
-          label="Search Words"
-          variant="outlined"
-        /> */}
       </div>
+      <TextField id="outlined-basic" label="Search Words" variant="outlined" />
     </div>
   );
 };
