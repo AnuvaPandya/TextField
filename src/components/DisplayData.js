@@ -16,7 +16,7 @@ const DisplayData = () => {
       <TextField
         style={{
           padding: "20px",
-          margin: "2rem",
+          margin: "rem",
         }}
         id="outlined-basic"
         label="Search"
@@ -25,7 +25,7 @@ const DisplayData = () => {
       />
       <div>
         {data
-          .filter((item) => item.title.toUpperCase().includes())
+          .filter((item) => item.title.toUpperCase().includes(title))
           .map((item) => {
             return (
               <>
