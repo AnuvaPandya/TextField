@@ -3,6 +3,7 @@ import { TextField } from "@mui/material";
 
 const DisplayData = () => {
   const [data, setData] = useState([]);
+  const [id, setId] = useState("");
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
@@ -12,16 +13,24 @@ const DisplayData = () => {
 
   return (
     <div>
+      <TextField
+        id="outlined-basic"
+        label="Search"
+        variant="outlined"
+        onChange={(event) => setId(event.target.value)}
+      />
       <div>
-        {data.map((element) => {
+        {data.map((item) => {
           return (
-            <div>
-              {element.id} ) {element.title.toUpperCase()}
-            </div>
+            <>
+              <div>
+                {item.id} ) {item.title.toUpperCase()}
+                {data.filter((item) => item.title.toUpperCase().includes())}
+              </div>
+            </>
           );
         })}
       </div>
-      <TextField id="outlined-basic" label="Search Words" variant="outlined" />
     </div>
   );
 };
