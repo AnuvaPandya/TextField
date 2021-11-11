@@ -5,17 +5,27 @@ import Loading from "./Loading";
 const DisplayData = () => {
   const [data, setData] = useState([]);
   const [title, setTitle] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [posts, setPosts] = useState([]);
+
+  const newPosts = async () => {
+    try {
+      const userPosts = await fetch(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      setPosts(userPosts);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    newPosts();
+  });
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
       .then((data) => setData(data));
-    if (loading) {
-      <main>
-        <Loading />
-      </main>;
-    }
   }, []);
 
   return (
@@ -32,6 +42,18 @@ const DisplayData = () => {
         onChange={(event) => setTitle(event.target.value)}
       />
       <div>
+        {posts
+          .filter((item) => item.title.toUpperCase().includes(title))
+          .map((item) => {
+            return (
+              <>
+                <div>
+                  {item.id} ) {item.title.toUpperCase()}
+                </div>
+              </>
+            );
+          })}
+
         {data
           .filter((item) => item.title.toUpperCase().includes(title))
           .map((item) => {
