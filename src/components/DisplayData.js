@@ -1,22 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { TextField } from "@mui/material";
+import Loading from "./Loading";
 
 const DisplayData = () => {
   const [data, setData] = useState([]);
   const [title, setTitle] = useState("");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://jsonplaceholder.typicode.com/todos")
       .then((response) => response.json())
       .then((data) => setData(data));
+    if (loading) {
+      <main>
+        <Loading />
+      </main>;
+    }
   }, []);
 
   return (
     <div>
       <TextField
         style={{
-          padding: "20px",
-          margin: "rem",
+          padding: "3px",
+          margin: "1rem",
+          display: "flex",
         }}
         id="outlined-basic"
         label="Search"
