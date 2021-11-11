@@ -15,7 +15,6 @@ const DisplayData = () => {
     <div>
       <TextField
         style={{
-          margin: "8rem",
           padding: "20px",
           margin: "rem",
         }}
