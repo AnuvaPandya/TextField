@@ -10,7 +10,7 @@ const DisplayData = () => {
   const newPosts = async () => {
     try {
       const userPosts = await fetch(
-        "https://jsonplaceholder.typicode.com/posts"
+        "https://jsonplaceholder.typicode.com/comments"
       );
       setPosts(userPosts);
     } catch (error) {
