@@ -42,17 +42,15 @@ const DisplayData = () => {
         onChange={(event) => setTitle(event.target.value)}
       />
       <div>
-        {posts
-          .filter((item) => item.title.toUpperCase().includes(title))
-          .map((item) => {
-            return (
-              <>
-                <div>
-                  {item.id} ) {item.title.toUpperCase()}
-                </div>
-              </>
-            );
-          })}
+        {posts.map((item) => {
+          return (
+            <>
+              <div>
+                {item.title} {item.body}
+              </div>
+            </>
+          );
+        })}
 
         {data
           .filter((item) => item.title.toUpperCase().includes(title))
