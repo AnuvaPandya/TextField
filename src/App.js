@@ -1,4 +1,5 @@
 import "./App.css";
+import "./index.css";
 import { useState, useEffect } from "react";
 import DisplayData from "./components/DisplayData";
 import Loading from "./components/Loading";
