@@ -4,8 +4,16 @@ import Loading from "./Loading";
 
 const DisplayData = () => {
   const [data, setData] = useState([]);
-  const [title, setTitle] = useState("");
+  const [string, setString] = useState("");
   const [posts, setPosts] = useState([]);
+  const [randomNumber, setRandomNumber] = useState(0);
+
+  const API = [
+    "https://jsonplaceholder.typicode.com/todos",
+    "https://jsonplaceholder.typicode.com/comments",
+    "https://jsonplaceholder.typicode.com/albums",
+    "https://jsonplaceholder.typicode.com/users",
+  ];
 
   // const newPosts = async () => {
   //   try {
@@ -23,10 +31,10 @@ const DisplayData = () => {
   // });
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/todos")
+    fetch(API[randomNumber])
       .then((response) => response.json())
       .then((data) => setData(data));
-  }, []);
+  }, [randomNumber]);
 
   return (
     <div>
@@ -40,10 +48,12 @@ const DisplayData = () => {
           id="outlined-basic"
           label="Search"
           variant="outlined"
-          onChange={(event) => setTitle(event.target.value)}
+          onChange={(event) => setString(event.target.value)}
         />
       </div>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 mt-4">
+      <button
+        onClick={() => setRandomNumber(Math.floor(Math.random() * API.length))}
+      >
         Refresh with new API
       </button>
       <div>
@@ -58,14 +68,14 @@ const DisplayData = () => {
         })} */}
 
         {data
-          .filter((item) => item.title.toUpperCase().includes(title))
+          .filter((item) => JSON.stringify(item).includes(string))
           .map((item) => {
             return (
-              <>
+              <div>
                 <div classname="border-2 m-1 p-2">
-                  {item.id} ) {item.title.toUpperCase()}
+                  {item.id} - {item.name ? item.name : item.title}
                 </div>
-              </>
+              </div>
             );
           })}
       </div>
